@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qahvaxona</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif, sans-serif;
+}
+
+body {
+    background-color: #fffaf5;
+    color: #4a3b32;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0e6df;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #3d2314;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #3d2314;
+    margin-left: 25px;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+.hero {
+    position: relative;
+    height: 85vh;
+    background: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 20, 15, 0.55);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    color: #ffffff;
+}
+
+.location-badge {
+    display: inline-block;
+    background-color: rgba(217, 119, 6, 0.3);
+    color: #fcd34d;
+    border: 1px solid rgba(252, 211, 77, 0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 54px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.hero-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e5e7eb;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-primary {
+    background-color: #d97706;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.menu-section {
+    padding: 80px 8%;
+    background-color: #fffaf5;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.sub-title {
+    color: #d97706;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.section-header h2 {
+    font-size: 42px;
+    color: #2c1810;
+    margin: 10px 0;
+}
+
+.section-header p {
+    color: #6b7280;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #4b5563;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.filter-btn.active {
+    background-color: #d97706;
+    color: white;
+    border-color: #d97706;
+}
+
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #f2e9e1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-wrap {
+    position: relative;
+    height: 200px;
+}
+
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.tag.orange { background-color: #d97706; }
+.tag.blue { background-color: #3b82f6; }
+
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    font-size: 20px;
+    color: #2c1810;
+}
+
+.price {
+    color: #d97706;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.card-body p {
+    color: #6b7280;
+    font-size: 13px;
+    font-family: sans-serif;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.buy-btn {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #d97706;
+    font-family: sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+.contact-section {
+    padding: 80px 8%;
+    background-color: #fffaf5;
+}
+
+.contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #3d2314;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid #e5d8cc;
+    border-radius: 8px;
+    background-color: #fffdfb;
+    font-family: sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #cb772b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+.footer {
+    background-color: #24140a;
+    color: #d1d5db;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: sans-serif;
+}
+
+.footer-logo {
+    font-size: 20px;
+    color: #f59e0b;
+    margin-bottom: 12px;
+}
+
+.footer-address {
+    font-size: 14px;
+    color: #e5e7eb;
+    margin-bottom: 16px;
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+@media (max-width: 900px) {
+    .cards-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .form-row {
+        flex-direction: column;
+    }
+}
+</style>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">☕</span> Qahvaxona
+        </div>
+        <nav class="nav-links">
+            <a href="#menu">Menyu</a>
+            <a href="#contact">Bog'lanish</a>
+        </nav>
+    </header>
+
+   
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="location-badge">TOSHKENT MARKAZIDA</span>
+            <h1>Har qultumda iliq his</h1>
+            <p>Dunyoning eng sara qahva donlari, mohir baristalar qo'li va iliq muhit — barchasi siz uchun.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-primary">Menyuni ko'rish</a>
+                <a href="#contact" class="btn-outline">Bog'lanish</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="menu-section" id="menu">
+        <div class="section-header">
+            <span class="sub-title">BIZNING TAKLIF</span>
+            <h2>Menyu</h2>
+            <p>Har bir ichimlik maxsus qahva donlari va professional usulda tayyorlanadi.</p>
+            
+          
+            <div class="filter-buttons">
+                <button class="filter-btn active">Barchasi</button>
+                <button class="filter-btn">Issiq</button>
+                <button class="filter-btn">Sovuq</button>
+            </div>
+        </div>
+        <div class="cards-container">
+
+            <!-- 1-Kartochka -->
+            <div class="card">
+                <div class="card-img-wrap">
+                    <span class="tag orange">Issiq</span>
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Espresso">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Espresso</h3>
+                        <span class="price">12 000 so'm</span>
+                    </div>
+                    <p>Kuchli va to'q, italyan usulida tayyorlangan klassik qahva.</p>
+                    <button class="buy-btn">Buyurtma berish</button>
+                </div>
+            </div>
+
+        
+            <div class="card">
+                <div class="card-img-wrap">
+                    <span class="tag orange">Issiq</span>
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" alt="Cappuccino">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Cappuccino</h3>
+                        <span class="price">18 000 so'm</span>
+                    </div>
+                    <p>Espresso, bug'langan sut va ko'pikli sut qatlami bilan.</p>
+                    <button class="buy-btn">Buyurtma berish</button>
+                </div>
+            </div>
+
+         
+            <div class="card">
+                <div class="card-img-wrap">
+                    <span class="tag blue">Sovuq</span>
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Cold Brew">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Cold Brew</h3>
+                        <span class="price">22 000 so'm</span>
+                    </div>
+                    <p>24 soat sovuq suvda demlangan, yumshoq va tengsiz lazzatli.</p>
+                    <button class="buy-btn">Buyurtma berish</button>
+                </div>
+            </div>
+
+           
+            <div class="card">
+                <div class="card-img-wrap">
+                    <span class="tag orange">Issiq</span>
+                    <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=600&q=80" alt="Latte">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Latte</h3>
+                        <span class="price">20 000 so'm</span>
+                    </div>
+                    <p>Ipak kabi yumshoq sut bilan uyg'unlashgan espresso.</p>
+                    <button class="buy-btn">Buyurtma berish</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-wrap">
+                    <span class="tag orange">Issiq</span>
+                    <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Matcha Latte">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Matcha Latte</h3>
+                        <span class="price">24 000 so'm</span>
+                    </div>
+                    <p>Yapon yashil choy kukuni va bug'langan sut kombinatsiyasi.</p>
+                    <button class="buy-btn">Buyurtma berish</button>
+                </div>
+            </div>
+
+      
+            <div class="card">
+                <div class="card-img-wrap">
+                    <span class="tag blue">Sovuq</span>
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" alt="Frappe">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>Frappe</h3>
+                        <span class="price">26 000 so'm</span>
+                    </div>
+                    <p>Muz, sut va qahva bilan blenderlangan salqin ichimlik.</p>
+                    <button class="buy-btn">Buyurtma berish</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <span class="sub-title">ALOQA</span>
+            <h2>Biz bilan bog'laning</h2>
+            <p>Savollaringiz bormi? Xabar yozing — tez orada javob beramiz.</p>
+        </div>
+
+        <form class="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Ism *</label>
+                    <input type="text" placeholder="Ismingiz" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" placeholder="+998 90 000 00 00">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" placeholder="email@manzil.uz" required>
+            </div>
+
+            <div class="form-group">
+                <label>Xabar *</label>
+                <textarea rows="5" placeholder="Xabaringizni yozing..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Yuborish</button>
+        </form>
+    </section>
+
+   
+    <footer class="footer">
+        <div class="footer-logo">
+            <span>☕</span> Qahvaxona
+        </div>
+        <p class="footer-address">Toshkent, Chilonzor tumani, Navruz ko'chasi 12 · Har kuni 08:00 — 22:00</p>
+        <p class="footer-copy">&copy; 2026 Qahvaxona. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+</body>
+</html>
